@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Café Criativo – Página Inicial</title>
+    <link rel="stylesheet" th:href="@{/css/cafeteria.css}">
+</head>
+
+<body class="tela-home">
+    <div th:replace="~{fragments/menu :: menu}"></div>
+
+    <h1>☕ Bem-vindo, <span th:text="${usuario}">usuário</span>!</h1>
+    <p>Que tal preparar um novo café hoje?</p>
+
+    <nav>
+        <a th:href="@{/pedidos/montar}">➕ Montar Café</a>
+        <a th:href="@{/usuarios/cadastrar}">👤 Meu Perfil</a>
+        <form id="logoutForm" th:action="@{/logout}" method="post" style="display:none;"></form>
+        <a href="#" onclick="document.getElementById('logoutForm').submit(); return false;">🚪 Sair</a>
+
+    </nav>
+</body>
+
+</html>

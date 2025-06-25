@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Receitas Clássicas</title>
+    <link rel="stylesheet" th:href="@{/css/cafeteria.css}" />
+</head>
+
+<body>
+
+    <header>
+        <h1>Receitas Clássicas de Café ☕</h1>
+    </header>
+
+    <section class="intro">
+        <a href="/receitas/nova">
+            <button>Nova Receita</button>
+        </a>
+    </section>
+
+    <section class="painel">
+        <div>
+            <table style="width:100%; border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <th style="text-align:left;">Nome</th>
+                        <th style="text-align:left;">Ingredientes</th>
+                        <th style="text-align:left;">Preço Base</th>
+                        <th style="text-align:left;">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="receita : ${receitas}">
+                        <td th:text="${receita.nome}">Nome</td>
+                        <td>
+                            <ul>
+                                <li th:each="ing : ${receita.ingredientesBase}" th:text="${ing.nome}">Ingrediente</li>
+                            </ul>
+                        </td>
+                        <td th:text="${ing.precoFormatado}">0.00</td>
+                        <td>
+                            <a th:href="@{/receitas/editar/{id}(id=${receita.id})}">
+                                <button>Editar</button>
+                            </a>
+                            <a th:href="@{/receitas/remover/{id}(id=${receita.id})}" onclick="return confirm('Tem certeza que deseja remover?')">
+                                <button style="background-color: #c0392b;">Remover</button>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <nav>
+        <a th:href="@{/home}">⬅ Voltar</a>
+    </nav>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Receita</title>
+    <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+<header>
+    <h1 th:text="${receita.id != null} ? 'Editar Receita' : 'Nova Receita'">Nova Receita</h1>
+</header>
+
+<section class="painel">
+    <form th:action="${receita.id != null} ? @{'/receitas/atualizar/' + ${receita.id}} : @{/receitas}" method="post">
+        <label for="nome">Nome da Receita:</label><br/>
+        <input type="text" name="nome" th:value="${receita.nome}" required/><br/><br/>
+
+        <label for="precoBase">Preço Base (R$):</label><br/>
+        <input type="number" step="0.01" name="precoBase" th:value="${receita.precoBase}" required/><br/><br/>
+
+        <label>Selecione os Ingredientes Base:</label><br/>
+        <div th:each="ing : ${ingredientes}">
+            <label>
+                <input type="checkbox" name="ingredientesIds"
+                       th:value="${ing.id}"
+                       th:checked="${receita.ingredientesBase?.contains(ing)}"/>
+                <span th:text="${ing.nome}">Ingrediente</span>
+            </label><br/>
+        </div>
+
+        <br/>
+        <button type="submit">Salvar Receita</button>
+        <a href="/receitas"><button type="button">Cancelar</button></a>
+    </form>
+</section>
+
+</body>
+</html>

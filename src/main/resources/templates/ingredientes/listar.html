@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ingredientes</title>
+    <link rel="stylesheet" th:href="@{/css/cafeteria.css}" />
+</head>
+
+<body class="tela-home">
+
+    <header>
+        <h1>Ingredientes Disponíveis 🧂</h1>
+    </header>
+
+    <section class="intro">
+        <a href="/ingredientes/novo">
+            <button>Novo Ingrediente</button>
+        </a>
+    </section>
+
+    <section class="painel">
+        <div>
+            <table style="width:100%; border-collapse:collapse;">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Tipo</th>
+                        <th>Preço (R$)</th>
+                        <th>Estoque</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="ing : ${ingredientes}">
+                        <td th:text="${ing.nome}">Nome</td>
+                        <td th:text="${ing.tipo}">BASE/ADICIONAL</td>
+                        <td th:text="${ing.precoFormatado}">0.00</td>
+                        <td th:text="${ing.estoqueAtual}">10</td>
+                        <td>
+                            <a th:href="@{'/ingredientes/editar/' + ${ing.id}}">
+                                <button>Editar</button>
+                            </a>
+                            <a th:href="@{'/ingredientes/remover/' + ${ing.id}}" onclick="return confirm('Confirma a exclusão?')">
+                                <button style="background-color:#c0392b;">Remover</button>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </section>
+    <nav>
+        <a th:href="@{/home}">⬅ Voltar</a>
+    </nav>
+
+</body>
+
+</html>

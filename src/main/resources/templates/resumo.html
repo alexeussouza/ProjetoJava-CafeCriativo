@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Resumo do Pedido</title>
+    <link rel="stylesheet" th:href="@{/css/cafeteria.css}" />
+</head>
+<body>
+
+    <!-- Banner superior -->
+    <header>
+        <h1>Pedido Confirmado ☕</h1>
+    </header>
+
+    <section class="intro">
+        <h2>Seu café está sendo preparado!</h2>
+        <p>Obrigado por escolher a Cafeteria do Java. Veja abaixo os detalhes da sua bebida:</p>
+    </section>
+
+    <section class="painel">
+        <div class="resumo">
+            <h3>Bebida Escolhida:</h3>
+            <p><strong>Nome:</strong> <span th:text="${cafeConfirmado.nomeFinal}">Nome do Café</span></p>
+
+            <h4>Ingredientes Base:</h4>
+            <ul>
+                <li th:each="b : ${cafeConfirmado.ingredientesBase}" th:text="${b.nome}">Base</li>
+            </ul>
+
+            <h4>Adicionais:</h4>
+            <ul>
+                <li th:each="a : ${cafeConfirmado.ingredientesAdicionais}" th:text="${a.nome}">Adicional</li>
+                <li th:if="${#lists.isEmpty(cafeConfirmado.ingredientesAdicionais)}">Nenhum adicional escolhido</li>
+            </ul>
+
+            <p><strong>Preço Total:</strong> <span th:text="${cafeConfirmado.precoFormatado}">0,00</span></p>
+
+            <p><strong>Sabor Identificado:</strong> <span th:text="${cafeConfirmado.saborClassicoIdentificado}">Capuccino</span></p>
+
+        </div>
+    </section>
+
+    <div style="text-align:center; margin-top:30px;">
+        <a href="/pedidos/montar">
+            <button>Fazer Novo Pedido</button>
+        </a>
+    </div>
+
+</body>
+</html>

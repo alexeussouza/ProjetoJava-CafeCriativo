@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastrar Ingrediente</title>
+    <link rel="stylesheet" th:href="@{/css/cafeteria.css}" />
+</head>
+<body>
+
+<header>
+    <h1 th:text="${ingrediente.id != null} ? 'Editar Ingrediente' : 'Novo Ingrediente'">Ingrediente</h1>
+</header>
+
+<section class="painel">
+    <form th:action="@{/ingredientes/salvar}" th:object="${ingrediente}" method="post">
+    <input type="hidden" th:field="*{id}" />
+    
+    <label for="nome">Nome:</label><br>
+    <input type="text" id="nome" th:field="*{nome}" required /><br><br>
+
+    <label for="tipo">Tipo:</label><br>
+    <select id="tipo" th:field="*{tipo}">
+        <option th:each="t : ${tipos}" th:value="${t}" th:text="${t}">BASE</option>
+    </select><br><br>
+
+    <label for="preco">Preço:</label><br>
+    <input type="number" th:field="*{preco}" step="0.01" min="0" required /><br><br>
+
+    <label for="estoqueAtual">Estoque:</label><br>
+    <input type="number" th:field="*{estoqueAtual}" min="0" required /><br><br>
+
+    <button type="submit">Salvar</button>
+</form>
+
+</section>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+{
+  "name": "cafeteria",
+  "version": "1.0.0",
+  "description": "Uma aplicação Java/Spring Boot para montar cafés personalizados, identificar receitas clássicas e gerenciar ingredientes com uma interface segura e estilizada. Servida com um toque de Flyway, Docker e segurança embutida com Spring Security.",
+  "main": "index.js",
+  "scripts": {
+    "cypress:web": "npx cypress open",
+    "cypress:headless": "npx cypress run --browser eletron",
+    "robot:login": "robot robot/tests/login_tests.robot",
+    "robot:cadastro": "robot robot/tests/cadastro_tests.robot",
+    "robot:pedidos": "robot robot/tests/pedidos_tests.robot",
+    "robot:pedidos2": "robot robot/tests/pedidos2_tests.robot",
+    "robot:all": "robot robot/tests/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SENAI-SD/qa-junior-01452-2025-722.643.141-68.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/SENAI-SD/qa-junior-01452-2025-722.643.141-68/issues"
+  },
+  "homepage": "https://github.com/SENAI-SD/qa-junior-01452-2025-722.643.141-68#readme",
+  "devDependencies": {
+    "cypress": "^14.5.0"
+  }
+}

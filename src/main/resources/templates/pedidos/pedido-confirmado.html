@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Seu Café Está Pronto!</title>
+    <link rel="stylesheet" th:href="@{/css/cafeteria.css}">
+</head>
+<body class="tela-home">
+    <h1>☕ Pedido Confirmado!</h1>
+
+    <p><strong>Base:</strong> <span th:text="${pedido.base}">Espresso</span></p>
+    <p><strong>Leite:</strong> <span th:text="${pedido.leite}">Integral</span></p>
+    <p><strong>Extras:</strong>
+        <ul>
+            <li th:each="extra : ${pedido.extras}" th:text="${extra}">Canela</li>
+        </ul>
+    </p>
+
+    <nav>
+        <a th:href="@{/montar}">🧋 Montar Outro</a>
+        <a th:href="@{/home}">🏠 Voltar para Início</a>
+    </nav>
+</body>
+</html>

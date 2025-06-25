@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Meus Pedidos</title>
+    <link rel="stylesheet" th:href="@{/css/cafeteria.css}">
+</head>
+
+<body class="tela-home">
+    <h1>📋 Meus Pedidos</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Sabor Identificado</th>
+                <th>Ingredientes</th>
+                <th>Preço (R$)</th>
+                <th>Data</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="p : ${pedidos}">
+                <td th:text="${p.id}">1</td>
+                <td th:text="${p.saborIdentificado}">Capuccino</td>
+                <td>
+                    <strong>Base:</strong>
+                    <ul>
+                        <li th:each="b : ${p.ingredientesBase}" th:text="${b}">Base</li>
+                    </ul>
+                    <strong>Extras:</strong>
+                    <ul>
+                        <li th:each="a : ${p.ingredientesAdicionais}" th:text="${a}">Adicional</li>
+                        <li th:if="${#lists.isEmpty(p.ingredientesAdicionais)}">Nenhum</li>
+                    </ul>
+                </td>
+
+                <td th:text="${p.precoFormatado}">9.90</td>
+                <td th:text="${p.dataHoraFormatada}">12/07/2025</td>
+                <td>
+                    <span th:text="${p.status}" th:class="'status-' + ${p.status.toLowerCase()}"></span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <nav style="margin-top: 2rem;">
+        <a th:href="@{/home}">🏠 Voltar</a>
+    </nav>
+</body>
+
+</html>

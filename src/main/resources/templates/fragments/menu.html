@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="menu">
+    <nav style="margin: 2rem 0;">
+        <a th:href="@{/home}">🏠 Início</a>
+        <a th:href="@{/pedidos/montar}">☕ Montar Café</a>
+        <a th:href="@{/ingredientes/listar}">📦 Ingredientes</a>
+        <a th:href="@{/pedidos/meus-pedidos}">🧾 Meus Pedidos</a>
+        <a href="#" onclick="document.getElementById('logoutForm').submit(); return false;">🚪 Sair</a>
+    </nav>
+</div>

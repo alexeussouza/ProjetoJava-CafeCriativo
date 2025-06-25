@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.3.1 (Python 3.12.4 on win32)" generated="2025-06-25T08:33:52.751601" rpa="false" schemaversion="5">
+<suite id="s1" name="Cadastro Tests" source="F:\Desenvolvimento\Projetos\Fiesp\Prova_1452\cafeteria\robot\tests\cadastro_tests.robot">
+<kw name="Create Session" owner="RequestsLibrary" type="SETUP">
+<msg time="2025-06-25T08:33:53.325666" level="INFO">Creating Session using : alias=cafe, url=http://localhost:8080, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>cafe</arg>
+<arg>http://localhost:8080</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-06-25T08:33:53.324675" elapsed="0.000991"/>
+</kw>
+<test id="s1-t1" name="Cadastro Valido" line="7">
+<kw name="Generate Random String" owner="String">
+<msg time="2025-06-25T08:33:53.327648" level="INFO">${rand} = AKgwZ1</msg>
+<var>${rand}</var>
+<arg>6</arg>
+<doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
+<status status="PASS" start="2025-06-25T08:33:53.326634" elapsed="0.001014"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-06-25T08:33:53.327648" level="INFO">${login} = userAKgwZ1</msg>
+<var>${login}</var>
+<arg>user${rand}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-06-25T08:33:53.327648" elapsed="0.000000"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2025-06-25T08:33:53.348637" level="INFO">POST Request : url=http://localhost:8080/usuarios/cadastrar (redirected) 
+ path_url=/usuarios/cadastrar 
+ headers={'User-Agent': 'python-requests/2.32.4', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '44'} 
+ body=login=userAKgwZ1&amp;senha=123456&amp;nome=RobotTest 
+ </msg>
+<msg time="2025-06-25T08:33:53.348637" level="INFO">GET Response : url=http://localhost:8080/login 
+ status=200, reason= 
+ headers={'X-Content-Type-Options': 'nosniff', 'X-XSS-Protection': '0', 'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Pragma': 'no-cache', 'Expires': '0', 'X-Frame-Options': 'DENY', 'Content-Type': 'text/html;charset=UTF-8', 'Content-Language': 'en-US', 'Transfer-Encoding': 'chunked', 'Date': 'Wed, 25 Jun 2025 11:34:26 GMT', 'Keep-Alive': 'timeout=60', 'Connection': 'keep-alive'} 
+ body=&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-br"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Café Criativo – Login&lt;/title&gt;
+    &lt;link rel="stylesheet" href="/css/cafeteria.css" /&gt;
+&lt;/head&gt;
+
+&lt;body class="tela-login"&gt;
+    &lt;div class="login-box"&gt;
+        &lt;h2&gt;☕ Café Criativo – Login&lt;/h2&gt;
+        &lt;form action="/login" method="post"&gt;&lt;input type="hidden" name="_csrf" value="kn2lZx6D_hBVWYp5LTRxgtFQWvBf7afbRB7wWEF_B6qjLUNt8UTEBiy7nXF4PLtNHRlFsbNpd8g8i5f2c3qVaXZOZpibGiVV"/&gt;
+            &lt;input type="text" name="username" value="" placeholder="Digite seu login" required /&gt;
+
+            &lt;input type="password" name="password" placeholder="Digite sua Senha" required /&gt;
+            &lt;button type="submit"&gt;Entrar&lt;/button&gt;
+
+            
+        &lt;/form&gt;
+        &lt;a class="logout"  href="/usuarios/cadastrar"&gt;Não tem conta? Cadastre-se&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+ 
+ </msg>
+<msg time="2025-06-25T08:33:53.349632" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<var>${resp}</var>
+<arg>cafe</arg>
+<arg>/usuarios/cadastrar</arg>
+<arg>data=login=${login}&amp;senha=123456&amp;nome=RobotTest</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-06-25T08:33:53.327648" elapsed="0.021984"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${resp.text}</arg>
+<arg>login</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2025-06-25T08:33:53.349632" elapsed="0.000000"/>
+</kw>
+<tag>cadastro</tag>
+<status status="PASS" start="2025-06-25T08:33:53.325666" elapsed="0.024967"/>
+</test>
+<test id="s1-t2" name="Cadastro Com Login Existente" line="15">
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2025-06-25T08:33:53.402858" level="INFO">POST Request : url=http://localhost:8080/usuarios/cadastrar (redirected) 
+ path_url=/usuarios/cadastrar 
+ headers={'User-Agent': 'python-requests/2.32.4', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Cookie': 'JSESSIONID=CCCA113D3A5E198B44ECA2C15E6079C7', 'Content-Length': '39'} 
+ body=login=admin&amp;senha=123456&amp;nome=AdminUser 
+ </msg>
+<msg time="2025-06-25T08:33:53.402858" level="INFO">GET Response : url=http://localhost:8080/login 
+ status=200, reason= 
+ headers={'X-Content-Type-Options': 'nosniff', 'X-XSS-Protection': '0', 'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Pragma': 'no-cache', 'Expires': '0', 'X-Frame-Options': 'DENY', 'Content-Type': 'text/html;charset=UTF-8', 'Content-Language': 'en-US', 'Transfer-Encoding': 'chunked', 'Date': 'Wed, 25 Jun 2025 11:34:26 GMT', 'Keep-Alive': 'timeout=60', 'Connection': 'keep-alive'} 
+ body=&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-br"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Café Criativo – Login&lt;/title&gt;
+    &lt;link rel="stylesheet" href="/css/cafeteria.css" /&gt;
+&lt;/head&gt;
+
+&lt;body class="tela-login"&gt;
+    &lt;div class="login-box"&gt;
+        &lt;h2&gt;☕ Café Criativo – Login&lt;/h2&gt;
+        &lt;form action="/login" method="post"&gt;&lt;input type="hidden" name="_csrf" value="YKT3lH9bQmUhkLll7I7eCAtr9wZKM1UH05UdhNqCwUyuCrwpA52W9U1jIQQM9YhR3KPqO2lS2j4pVWUq5PF4te2zoH6WPdoR"/&gt;
+            &lt;input type="text" name="username" value="" placeholder="Digite seu login" required /&gt;
+
+            &lt;input type="password" name="password" placeholder="Digite sua Senha" required /&gt;
+            &lt;button type="submit"&gt;Entrar&lt;/button&gt;
+
+            
+        &lt;/form&gt;
+        &lt;a class="logout"  href="/usuarios/cadastrar"&gt;Não tem conta? Cadastre-se&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+ 
+ </msg>
+<msg time="2025-06-25T08:33:53.402858" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<var>${resp}</var>
+<arg>cafe</arg>
+<arg>/usuarios/cadastrar</arg>
+<arg>data=login=admin&amp;senha=123456&amp;nome=AdminUser</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-06-25T08:33:53.352685" elapsed="0.050173"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${resp.text}</arg>
+<arg>name="username"</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2025-06-25T08:33:53.403858" elapsed="0.000086"/>
+</kw>
+<tag>cadastro</tag>
+<status status="PASS" start="2025-06-25T08:33:53.352685" elapsed="0.051850"/>
+</test>
+<test id="s1-t3" name="Cadastro Sem Login" line="21">
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2025-06-25T08:33:53.457523" level="INFO">POST Request : url=http://localhost:8080/usuarios/cadastrar (redirected) 
+ path_url=/usuarios/cadastrar 
+ headers={'User-Agent': 'python-requests/2.32.4', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Cookie': 'JSESSIONID=CCCA113D3A5E198B44ECA2C15E6079C7', 'Content-Length': '40'} 
+ body=login=&amp;senha=senha123&amp;nome=TesteSemLogin 
+ </msg>
+<msg time="2025-06-25T08:33:53.457523" level="INFO">GET Response : url=http://localhost:8080/login 
+ status=200, reason= 
+ headers={'X-Content-Type-Options': 'nosniff', 'X-XSS-Protection': '0', 'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Pragma': 'no-cache', 'Expires': '0', 'X-Frame-Options': 'DENY', 'Content-Type': 'text/html;charset=UTF-8', 'Content-Language': 'en-US', 'Transfer-Encoding': 'chunked', 'Date': 'Wed, 25 Jun 2025 11:34:26 GMT', 'Keep-Alive': 'timeout=60', 'Connection': 'keep-alive'} 
+ body=&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-br"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Café Criativo – Login&lt;/title&gt;
+    &lt;link rel="stylesheet" href="/css/cafeteria.css" /&gt;
+&lt;/head&gt;
+
+&lt;body class="tela-login"&gt;
+    &lt;div class="login-box"&gt;
+        &lt;h2&gt;☕ Café Criativo – Login&lt;/h2&gt;
+        &lt;form action="/login" method="post"&gt;&lt;input type="hidden" name="_csrf" value="7lVpXwfRFbEoMerZNxYdHB0h8hI-WCbucECEpHU5cG8i7N9yjWwIPjXpdtAFVNvtBzspL38Y3ypdPhbDRyThlUIIEV0a27lK"/&gt;
+            &lt;input type="text" name="username" value="" placeholder="Digite seu login" required /&gt;
+
+            &lt;input type="password" name="password" placeholder="Digite sua Senha" required /&gt;
+            &lt;button type="submit"&gt;Entrar&lt;/button&gt;
+
+            
+        &lt;/form&gt;
+        &lt;a class="logout"  href="/usuarios/cadastrar"&gt;Não tem conta? Cadastre-se&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+ 
+ </msg>
+<msg time="2025-06-25T08:33:53.458543" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<var>${resp}</var>
+<arg>cafe</arg>
+<arg>/usuarios/cadastrar</arg>
+<arg>data=login=&amp;senha=senha123&amp;nome=TesteSemLogin</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-06-25T08:33:53.405541" elapsed="0.053002"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${resp.text}</arg>
+<arg>name="username"</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2025-06-25T08:33:53.458543" elapsed="0.000976"/>
+</kw>
+<tag>cadastro</tag>
+<status status="PASS" start="2025-06-25T08:33:53.404535" elapsed="0.054984"/>
+</test>
+<test id="s1-t4" name="Cadastro Sem Senha" line="27">
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2025-06-25T08:33:53.522802" level="INFO">POST Request : url=http://localhost:8080/usuarios/cadastrar (redirected) 
+ path_url=/usuarios/cadastrar 
+ headers={'User-Agent': 'python-requests/2.32.4', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Cookie': 'JSESSIONID=CCCA113D3A5E198B44ECA2C15E6079C7', 'Content-Length': '40'} 
+ body=login=novoUser&amp;senha=&amp;nome=TesteSemSenha 
+ </msg>
+<msg time="2025-06-25T08:33:53.522802" level="INFO">GET Response : url=http://localhost:8080/login 
+ status=200, reason= 
+ headers={'X-Content-Type-Options': 'nosniff', 'X-XSS-Protection': '0', 'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Pragma': 'no-cache', 'Expires': '0', 'X-Frame-Options': 'DENY', 'Content-Type': 'text/html;charset=UTF-8', 'Content-Language': 'en-US', 'Transfer-Encoding': 'chunked', 'Date': 'Wed, 25 Jun 2025 11:34:26 GMT', 'Keep-Alive': 'timeout=60', 'Connection': 'keep-alive'} 
+ body=&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-br"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Café Criativo – Login&lt;/title&gt;
+    &lt;link rel="stylesheet" href="/css/cafeteria.css" /&gt;
+&lt;/head&gt;
+
+&lt;body class="tela-login"&gt;
+    &lt;div class="login-box"&gt;
+        &lt;h2&gt;☕ Café Criativo – Login&lt;/h2&gt;
+        &lt;form action="/login" method="post"&gt;&lt;input type="hidden" name="_csrf" value="14LrpJk5NqTqvh-9Wfnp06odLoLNwOfIM-Dzwa_lJRGBkUD7tLuKxasBVcXH2y6JadTd4MgkA7quptflBISW8JjURCO5pibD"/&gt;
+            &lt;input type="text" name="username" value="" placeholder="Digite seu login" required /&gt;
+
+            &lt;input type="password" name="password" placeholder="Digite sua Senha" required /&gt;
+            &lt;button type="submit"&gt;Entrar&lt;/button&gt;
+
+            
+        &lt;/form&gt;
+        &lt;a class="logout"  href="/usuarios/cadastrar"&gt;Não tem conta? Cadastre-se&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+ 
+ </msg>
+<msg time="2025-06-25T08:33:53.522802" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<var>${resp}</var>
+<arg>cafe</arg>
+<arg>/usuarios/cadastrar</arg>
+<arg>data=login=novoUser&amp;senha=&amp;nome=TesteSemSenha</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-06-25T08:33:53.460518" elapsed="0.062284"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${resp.text}</arg>
+<arg>name="username"</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2025-06-25T08:33:53.522802" elapsed="0.000971"/>
+</kw>
+<tag>cadastro</tag>
+<status status="PASS" start="2025-06-25T08:33:53.460518" elapsed="0.063255"/>
+</test>
+<test id="s1-t5" name="Cadastro Com Login Muito Curto" line="33">
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2025-06-25T08:33:53.579580" level="INFO">POST Request : url=http://localhost:8080/usuarios/cadastrar (redirected) 
+ path_url=/usuarios/cadastrar 
+ headers={'User-Agent': 'python-requests/2.32.4', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Cookie': 'JSESSIONID=CCCA113D3A5E198B44ECA2C15E6079C7', 'Content-Length': '36'} 
+ body=login=a&amp;senha=123456&amp;nome=CurtoLogin 
+ </msg>
+<msg time="2025-06-25T08:33:53.580575" level="INFO">GET Response : url=http://localhost:8080/login 
+ status=200, reason= 
+ headers={'X-Content-Type-Options': 'nosniff', 'X-XSS-Protection': '0', 'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Pragma': 'no-cache', 'Expires': '0', 'X-Frame-Options': 'DENY', 'Content-Type': 'text/html;charset=UTF-8', 'Content-Language': 'en-US', 'Transfer-Encoding': 'chunked', 'Date': 'Wed, 25 Jun 2025 11:34:26 GMT', 'Keep-Alive': 'timeout=60', 'Connection': 'keep-alive'} 
+ body=&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-br"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Café Criativo – Login&lt;/title&gt;
+    &lt;link rel="stylesheet" href="/css/cafeteria.css" /&gt;
+&lt;/head&gt;
+
+&lt;body class="tela-login"&gt;
+    &lt;div class="login-box"&gt;
+        &lt;h2&gt;☕ Café Criativo – Login&lt;/h2&gt;
+        &lt;form action="/login" method="post"&gt;&lt;input type="hidden" name="_csrf" value="fpKBgq5vkSLhBFTxPH7YCSKfWxXV07mYa9rMv7_aNLTf5IeoHavg45xX8kPMYWXFDFPsOkCmdi22tYm1XL6pjojrVYbn0-GQ"/&gt;
+            &lt;input type="text" name="username" value="" placeholder="Digite seu login" required /&gt;
+
+            &lt;input type="password" name="password" placeholder="Digite sua Senha" required /&gt;
+            &lt;button type="submit"&gt;Entrar&lt;/button&gt;
+
+            
+        &lt;/form&gt;
+        &lt;a class="logout"  href="/usuarios/cadastrar"&gt;Não tem conta? Cadastre-se&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+ 
+ </msg>
+<msg time="2025-06-25T08:33:53.580575" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<var>${resp}</var>
+<arg>cafe</arg>
+<arg>/usuarios/cadastrar</arg>
+<arg>data=login=a&amp;senha=123456&amp;nome=CurtoLogin</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-06-25T08:33:53.525809" elapsed="0.054766"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${resp.text}</arg>
+<arg>name="username"</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2025-06-25T08:33:53.581568" elapsed="0.000000"/>
+</kw>
+<tag>cadastro</tag>
+<status status="PASS" start="2025-06-25T08:33:53.525809" elapsed="0.056759"/>
+</test>
+<status status="PASS" start="2025-06-25T08:33:52.752631" elapsed="0.831939"/>
+</suite>
+<statistics>
+<total>
+<stat pass="5" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="5" fail="0" skip="0">cadastro</stat>
+</tag>
+<suite>
+<stat name="Cadastro Tests" id="s1" pass="5" fail="0" skip="0">Cadastro Tests</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

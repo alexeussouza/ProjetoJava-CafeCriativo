@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Monte Seu Café</title>
+    <link rel="stylesheet" th:href="@{/css/cafeteria.css}" />
+</head>
+
+<body class="tela-home">
+
+    <!-- Banner superior -->
+    <header style="background-color:#6f4e37; padding:20px; color:white; text-align:center;">
+        <h1>Cafeteria do Java</h1>
+    </header>
+
+    <!-- Seção introdutória -->
+    <section style="background-color:#f3e9dc; text-align:center; padding:20px 0;">
+        <h2>Monte Seu Café</h2>
+        <p>Descubra como criar a bebida perfeita para você. Escolha os seus ingredientes e personalize seu café de forma simples e divertida.</p>
+    </section>
+
+    <!-- Painel de 3 colunas -->
+    <section style="display:flex; justify-content:space-around; padding:20px;">
+        <!-- Coluna 1 -->
+        <div>
+            <h3>1. Crie sua bebida</h3>
+            <form method="post" th:action="@{/pedidos/base}">
+                <div th:each="ingrediente : ${ingredientesBase}">
+                    <label>
+                        <input type="checkbox" name="idsBase" th:value="${ingrediente.id}" />
+                        <span th:text="${ingrediente.nome}">Ingrediente Base</span>
+                    </label><br />
+                </div>
+                <button type="submit">Confirmar Base</button>
+            </form>
+        </div>
+
+        <!-- Coluna 2 -->
+        <div>
+            <h3>2. Personalize</h3>
+            <form method="post" th:action="@{/pedidos/adicionais}">
+                <div th:each="adicional : ${ingredientesAdicionais}">
+                    <label>
+                        <input type="checkbox" name="idsAdicionais" th:value="${adicional.id}" />
+                        <span th:text="${adicional.nome}">Adicional</span>
+                    </label><br />
+                </div>
+                <button type="submit">Adicionar</button>
+            </form>
+        </div>
+
+        <!-- Coluna 3 -->
+        <div>
+            <h3>3. Resumo</h3>
+            <p><strong>Bebida:</strong> <span th:text="${cafe?.nomeFinal}">Nome</span></p>
+            <p><strong>Base:</strong>
+                <span th:each="b : ${cafe?.ingredientesBase}" th:text="${b.nome + ' '}" />
+            </p>
+            <p><strong>Adicionais:</strong>
+                <span th:each="a : ${cafe?.ingredientesAdicionais}" th:text="${a.nome + ' '}" />
+            </p>
+            <form method="post" th:action="@{/pedidos/finalizar}">
+                <input type="text" name="nomeCliente" placeholder="Seu nome" required />
+                <button type="submit">Confirmar Pedido</button>
+            </form>
+        </div>
+        <nav style="margin-top: 2rem;">
+            <a th:href="@{/home}">🏠 Voltar</a>
+        </nav>
+    </section>
+
+    <!-- Mensagem de erro opcional -->
+    <div th:if="${erro != null}" style="color:red; text-align:center;">
+        <p th:text="${erro}">Mensagem de erro</p>
+    </div>
+
+</body>
+
+</html>

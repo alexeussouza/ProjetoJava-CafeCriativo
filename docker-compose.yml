@@ -1,0 +1,35 @@
+services:
+  db:
+    image: postgres:15
+    container_name: db_cafeteria
+    environment:
+      POSTGRES_DB: db_cafeteria
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - cafeteria-net
+
+  app:
+    build: .
+    container_name: cafeteria_app
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/db_cafeteria
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    ports:
+      - "8080:8080"
+    networks:
+      - cafeteria-net
+
+volumes:
+  db-data:
+
+networks:
+  cafeteria-net:

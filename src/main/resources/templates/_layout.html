@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{_layout}">
+<head>
+    <meta charset="UTF-8">
+    <title th:replace="~{::title}">Cafeteria do Java</title>
+    <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+
+<header>
+    <h1>Cafeteria do Java ☕</h1>
+</header>
+
+<main layout:fragment="content">
+    <!-- Conteúdo das páginas será inserido aqui -->
+</main>
+
+<footer style="text-align:center; padding:20px; font-size:0.9em; color:#999;">
+    &copy; 2025 Cafeteria do Java. Todos os direitos reservados.
+</footer>
+
+</body>
+</html>
