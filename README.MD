@@ -195,18 +195,16 @@ Isso garante segurança e privacidade entre usuários distintos.
 
 > Projeto livre para fins educacionais.
 
-1 - login.JPG
+![1 - login](https://github.com/user-attachments/assets/841d4d99-b25a-4d75-a80d-42c4db3fd17e)
 
-https://github.com/alexeussouza/ProjetoJava-CafeCriativo/blob/main/1%20-%20login.JPG?raw=true
+![2 - home](https://github.com/user-attachments/assets/a88bf2d0-217d-448e-824d-9ee9d18d24b6)
 
+![3 - montarcafe](https://github.com/user-attachments/assets/3f09bdf0-eed8-4937-8d1c-8640a21c4743)
 
-https://github.com/alexeussouza/ProjetoJava-CafeCriativo/blob/main/2%20-%20home.JPG?raw=true
+![4 - ingredientes](https://github.com/user-attachments/assets/ea1f2822-87d0-48e0-a9b2-55cc842dd9c4)
 
-https://github.com/alexeussouza/ProjetoJava-CafeCriativo/blob/main/3%20-%20montarcafe.JPG?raw=true
+![5 - pedidos](https://github.com/user-attachments/assets/e82b6c12-88b0-4563-a51b-2832e27c16ad)
 
-https://github.com/alexeussouza/ProjetoJava-CafeCriativo/blob/main/4%20-%20ingredientes.JPG?raw=true
+![6 - Cadastro](https://github.com/user-attachments/assets/1626ef3d-2f6f-4001-ae09-1f8d6ee1852d)
 
-https://github.com/alexeussouza/ProjetoJava-CafeCriativo/blob/main/5%20-%20pedidos.JPG?raw=true
-
-https://github.com/alexeussouza/ProjetoJava-CafeCriativo/blob/main/6%20-%20Cadastro.JPG?raw=true
 
