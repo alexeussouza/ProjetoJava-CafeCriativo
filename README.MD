@@ -195,5 +195,16 @@ Isso garante segurança e privacidade entre usuários distintos.
 
 > Projeto livre para fins educacionais.
 
+https://github.com/alexeussouza/ProjetoJava-CafeCriativo/blob/main/1%20-%20login.JPG?raw=true
 
-https://github.com/alexeussouza/ProjetoJava-CafeCriativo/blob/main/1%20-%20login.JPG
+
+https://github.com/alexeussouza/ProjetoJava-CafeCriativo/blob/main/2%20-%20home.JPG?raw=true
+
+https://github.com/alexeussouza/ProjetoJava-CafeCriativo/blob/main/3%20-%20montarcafe.JPG?raw=true
+
+https://github.com/alexeussouza/ProjetoJava-CafeCriativo/blob/main/4%20-%20ingredientes.JPG?raw=true
+
+https://github.com/alexeussouza/ProjetoJava-CafeCriativo/blob/main/5%20-%20pedidos.JPG?raw=true
+
+https://github.com/alexeussouza/ProjetoJava-CafeCriativo/blob/main/6%20-%20Cadastro.JPG?raw=true
+
